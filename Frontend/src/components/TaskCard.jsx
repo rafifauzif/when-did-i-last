@@ -1,37 +1,28 @@
 import React from 'react'
 
-const TaskCard = ({ taskName, lastDone, isDone, onToggle, onEdit, onDelete }) => {
+const TaskCard = ({tasks, onToggle}) => {
+    function getPriorityColor(priority) {
+        switch (priority) {
+            case 'High':return 'text-red-600';
+            case 'Mid':return 'text-yellow-500';
+            case 'Low':return 'text-green-500';
+            default: return 'text-gray-500';
+        }
+    }
     return (
-        <div className="bg-white shadow-md rounded-xl p-4 flex justify-between items-center">
-
-            <div className="flex items-center gap-3">
-                <input
-                    type="checkbox"
-                    checked={isDone}
-                    onChange={onToggle}
-                    className="w-5 h-5 accent-green-500 cursor-pointer"
-                />
-                <div>
-                    <h3 className={`text-lg font-semibold ${isDone ? 'line-through text-gray-400' : ''}`}>
-                        {taskName}
-                    </h3>
-                    <p className="text-sm text-gray-500">Last done: {lastDone}</p>
+        <div className='w-full bg-white myshadow rounded-xl px-6 py-4 mb-4'>
+            <div className='flex items-center'>
+                <input className='mr-6 accent-sky-700 text-white scale-250' type='checkbox' checked={tasks.isDone} onChange={onToggle} />
+                <div className='w-full'>
+                    <div className='w-full flex flex-row justify-between mb-1'>
+                        <h2 className='text-2xl'>{tasks.title}</h2>
+                        <p className={getPriorityColor(tasks.priority)}>{tasks.priority}</p>
+                    </div>
+                    <div className='w-full flex flex-row justify-between mb-1'>
+                        <p className='text-sm text-gray-500'>{tasks.desc}</p>
+                        <p className='text-sm text-gray-500'>Due to {tasks.dueDate}</p>
+                    </div>
                 </div>
-            </div>
-
-            <div className="flex gap-2">
-                <button
-                    onClick={onEdit}
-                    className="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                >
-                    Edit
-                </button>
-                <button
-                    onClick={onDelete}
-                    className="px-3 py-1 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600"
-                >
-                    Delete
-                </button>
             </div>
         </div>
     )
