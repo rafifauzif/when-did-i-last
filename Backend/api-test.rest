@@ -1,0 +1,22 @@
+GET http://localhost:4000/api/tasks
+###
+POST http://localhost:4000/api/tasks
+Content-Type: application/json
+
+{
+  "title": "test123",
+  "description": "debug",
+  "priority": 2,
+  "dueDate": "2025-10-29T23:59"
+}
+###
+PUT http://localhost:4000/api/tasks/18
+Content-Type: application/json
+
+{
+  "title": "nonton bola",
+  "description": "bismillah bantai bantai bebihh",
+  "priority": 3,
+  "due_date": "2000-12-31 00:00:00"
+}
+###
